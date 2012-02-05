@@ -31,6 +31,30 @@ require File.expand_path(File.dirname(__FILE__) + '/edgecase')
 
 def score(dice)
   # You need to write this method
+  score = 0
+  return score if dice.empty?
+  rolls = Hash[dice.group_by{|n| n}.map{|k,v| [k, v.size]}]
+  triplet = rolls.select{|k,v| v>2}
+  ones = rolls[1]
+  fives = rolls[5]
+  triplet_key = 0
+  if not triplet.empty? 
+    triplet_key = triplet.keys[0]
+    if triplet_key == 1
+      score = 1000
+   	else
+	  score = triplet_key * 100
+	end
+  end
+  if ones != nil
+    ones = ones-3 if triplet_key == 1
+    score = score + ones * 100
+  end
+  if fives != nil
+    fives = fives-3 if triplet_key==5
+    score = score + fives * 50
+  end
+  return score
 end
 
 class AboutScoringProject < EdgeCase::Koan
