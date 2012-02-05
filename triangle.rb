@@ -15,12 +15,10 @@
 #
 def triangle(a, b, c)
   # WRITE THIS CODE
-  if a==b and b==c
-   return :equilateral
-  end
-  if a==b or b==c or a==c
-    return :isosceles
-  end
+ a, b, c = [a, b, c].sort
+  raise TriangleError if a <= 0 or a + b <= c
+  return :equilateral if a == c
+  return :isosceles if a == b or b == c
   return :scalene
 end
 
