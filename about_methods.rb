@@ -36,12 +36,12 @@ class AboutMethods < EdgeCase::Koan
     exception = assert_raise(ArgumentError) do
       my_global_method
     end
-    assert_match(/wrong number/, exception.message)
+    assert_match(/wrong number of arguments/, exception.message)
 
     exception = assert_raise(ArgumentError) do
       my_global_method(1,2,3)
     end
-    assert_match(/wrong number/, exception.message)
+    assert_match(/wrong number of arguments/, exception.message)
   end
 
   # ------------------------------------------------------------------
